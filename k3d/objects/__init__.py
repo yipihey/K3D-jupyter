@@ -15,6 +15,8 @@ from .points import Points
 from .text import Label, Text, Text2d, TextureText
 # Texture objects
 from .texture import Texture
+# Textured points (ECHOES fork): galaxy-image billboards
+from .textured_points import TexturedPoints
 # Utility functions
 from .utils import clone_object, create_object, objects_map
 # Vector objects
@@ -61,6 +63,7 @@ __all__ = [
     "Points",
     # Texture objects
     "Texture",
+    "TexturedPoints",
     # Utility functions
     "create_object",
     "clone_object",

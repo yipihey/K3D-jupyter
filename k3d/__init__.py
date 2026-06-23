@@ -10,6 +10,7 @@ from .colormaps import (basic_color_maps, matplotlib_color_maps,
 from .factory import (_default_color, default_colormap, label, line, lines,
                       marching_cubes, mesh, mip, nice_colors, plot, points,
                       sparse_voxels, stl, surface, text, text2d, texture,
+                      textured_points,
                       texture_text, vector_field, vectors, volume,
                       volume_slice, voxel_chunk, voxels, voxels_group,
                       vtk_poly_data)

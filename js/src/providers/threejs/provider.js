@@ -55,6 +55,7 @@ module.exports = {
         Points: require('./objects/Points'),
         STL: require('./objects/STL'),
         Surface: require('./objects/Surface'),
+        TexturedPoints: require('./objects/TexturedPoints'),
         TextureText: require('./objects/TextureText'),
         Texture: require('./objects/Texture'),
         Text: require('./objects/Text'),
