@@ -6,6 +6,7 @@ from .geometry import line, lines, mesh, stl, surface
 from .gltf import glb, gltf
 from .plot import plot
 from .points import points
+from .textured_points import textured_points
 from .text import label, text, text2d, texture_text
 from .texture import texture
 from .vectors import vector_field, vectors
@@ -35,6 +36,7 @@ __all__ = [
     "vector_field",
     "vectors",
     "points",
+    "textured_points",
     "texture",
     "vtk_poly_data",
     "glb",

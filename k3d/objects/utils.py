@@ -13,6 +13,7 @@ from .geometry import STL, Line, Lines, Mesh, Surface
 from .points import Points
 from .text import Label, Text, Text2d, TextureText
 from .texture import Texture
+from .textured_points import TexturedPoints
 from .vectors import VectorField, Vectors
 from .volumetric import MIP, MarchingCubes, SparseVoxels, Volume, VolumeSlice, Voxels, VoxelsGroup
 
@@ -31,6 +32,7 @@ objects_map: TypingDict[str, Any] = {
     "Text": Text,
     "Text2d": Text2d,
     "Texture": Texture,
+    "TexturedPoints": TexturedPoints,
     "TextureText": TextureText,
     "VectorField": VectorField,
     "Vectors": Vectors,

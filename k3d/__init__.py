@@ -23,6 +23,7 @@ from .factory import (
                         text2d,
                         texture,
                         texture_text,
+                        textured_points,
                         vector_field,
                         vectors,
                         volume,

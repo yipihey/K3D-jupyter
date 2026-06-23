@@ -30,6 +30,9 @@ from .text import Label, Text, Text2d, TextureText
 # Texture objects
 from .texture import Texture
 
+# Textured points (ECHOES fork): galaxy-image billboards
+from .textured_points import TexturedPoints
+
 # Utility functions
 from .utils import create_object, objects_map
 
@@ -78,6 +81,7 @@ __all__ = [
     "Points",
     # Texture objects
     "Texture",
+    "TexturedPoints",
     # Utility functions
     "create_object",
     "clone_object",
