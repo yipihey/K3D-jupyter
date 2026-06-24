@@ -41,6 +41,7 @@ module.exports = {
         Scene: require('./initializers/Scene').Init,
         Setup: require('./initializers/Setup'),
         Manipulate: require('./initializers/Manipulate'),
+        WebXR: require('./initializers/WebXR'),
     },
     /**
      * @namespace Objects

@@ -462,7 +462,7 @@ module.exports = function (K3D) {
 
                 K3D.dispatch(K3D.events.RENDERED);
 
-                if (K3D.autoRendering) {
+                if (K3D.autoRendering && !self.renderer.xr.isPresenting) {
                     requestAnimationFrame(render);
                 } else {
                     resolve(true);
@@ -505,6 +505,16 @@ module.exports = function (K3D) {
         }
 
         return renderingPromise;
+    };
+
+    // Single-pass draw for an immersive WebXR session (the multi-pass depth-peel + axes-inset path
+    // above is incompatible with the XR per-eye framebuffer). The galaxy billboards/points are
+    // alpha-blended (depthWrite:false), so single-pass OIT is fine and far cheaper at 72-90 Hz stereo.
+    this.renderXRFrame = function () {
+        const world = K3D.getWorld();
+        self.renderer.autoClear = true;
+        self.renderer.render(world.scene, world.camera);
+        self.renderer.autoClear = false;
     };
 
     this.renderOffScreen = function (width, height) {

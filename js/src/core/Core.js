@@ -1379,6 +1379,13 @@ function K3D(provider, targetDOMNode, parameters) {
     this.Provider.Initializers.Scene.call(world, this);
     this.Provider.Initializers.Manipulate.call(world, this);
 
+    // ECHOES fork: opt-in WebXR (immersive VR + AR passthrough). Not auto-run; the viewer calls
+    // K3DInstance.enableWebXR({...}) to add the Enter VR/AR buttons (a no-op on non-WebXR browsers).
+    this.enableWebXR = function (config) {
+        return self.Provider.Initializers.WebXR
+            ? self.Provider.Initializers.WebXR(self, config || {}) : null;
+    };
+
     this.resizeObserver = new ResizeObserver(entries => {
         this.resizeHelper();
     });

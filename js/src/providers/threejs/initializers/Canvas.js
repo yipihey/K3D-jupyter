@@ -163,6 +163,12 @@ module.exports = function (K3D) {
     }
 
     function refresh(time, skipFrameCount) {
+        // While an immersive WebXR session is presenting, the XR session drives frames via
+        // renderer.setAnimationLoop — suspend this rAF loop so the two don't fight (the ECHOES
+        // WebXR module restarts it via resumeRefreshLoop() on session end).
+        if (self.renderer && self.renderer.xr && self.renderer.xr.isPresenting) {
+            return;
+        }
         if (K3D.parameters.minimumFps > 0) {
             if (!time) {
                 // fired manually - we need correct parameters
@@ -291,6 +297,13 @@ module.exports = function (K3D) {
     window.addEventListener('visibilitychange', () => {
         lastFrameTime = null;
     });
+
+    // Restart the desktop rAF loop after an immersive WebXR session ends (resets the frame timer to
+    // avoid a huge frameInterval spike, matching the visibilitychange handler).
+    this.resumeRefreshLoop = function () {
+        lastFrameTime = null;
+        requestAnimationFrame(refresh);
+    };
 
     this.changeControls = function (force) {
         if (self.controls.type === K3D.parameters.cameraMode && !force) {

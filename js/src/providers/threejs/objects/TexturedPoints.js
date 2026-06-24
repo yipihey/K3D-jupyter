@@ -57,6 +57,7 @@ module.exports = {
                     uOpacity: { value: config.opacity },
                     lumLow: { value: lumLow },
                     lumHigh: { value: lumHigh },
+                    uCamPos: { value: new THREE.Vector3() },
                 },
                 vertexShader: require('./shaders/TexturedPoints.vertex.glsl'),
                 fragmentShader: require('./shaders/TexturedPoints.fragment.glsl'),
@@ -69,6 +70,11 @@ module.exports = {
             object.frustumCulled = false;     // base quad bbox is tiny; instances span the volume
             object.applyMatrix4(modelMatrix);
             object.updateMatrixWorld();
+            // keep the world-space billboard facing the (per-eye) camera world position on every
+            // render path — desktop and each WebXR eye — with no frame-loop wiring.
+            object.onBeforeRender = function (renderer, scene, camera) {
+                material.uniforms.uCamPos.value.setFromMatrixPosition(camera.matrixWorld);
+            };
 
             const image = document.createElement('img');
             image.src = `data:image/${config.texture_file_format};base64,${
